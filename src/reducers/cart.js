@@ -12,6 +12,18 @@ let initialState = [
         rating: 5
        },
        quantity : 5
+    },
+    {
+        product: {
+            id : 3,
+            name: 'OPPO F1 S',
+            image: 'https://mobipicker-xukdv8yuztpzliajnm.stackpathdns.com/wp-content/uploads/2016/11/Oppo-F1-Plus-vs-Vivo-V3-Max-Specs-Features-Price-Comparison-2.jpg',
+            description: 'Sản phẩm do apply sản xuất',
+            price: 300,
+            inventory: 10,
+            rating: 3
+        },
+        quantity : 3
     }
 ];
 
