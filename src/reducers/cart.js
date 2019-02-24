@@ -1,39 +1,37 @@
 import * as Types from './../constants/ActionType';
 let data = JSON.parse(localStorage.getItem('CART'));
-let initialState = [
-    {
-       product: {
-        id : 1,
-        name: 'Iphone 6 Plus',
-        image: 'https://www.cellgiant.com/wp-content/uploads/2017/12/Iphone-6-plus-gold.jpg',
-        description: 'Sản phẩm do apply sản xuất',
-        price: 500,
-        inventory: 10,
-        rating: 5
-       },
-       quantity : 5
-    },
-    {
-        product: {
-            id : 3,
-            name: 'OPPO F1 S',
-            image: 'https://mobipicker-xukdv8yuztpzliajnm.stackpathdns.com/wp-content/uploads/2016/11/Oppo-F1-Plus-vs-Vivo-V3-Max-Specs-Features-Price-Comparison-2.jpg',
-            description: 'Sản phẩm do apply sản xuất',
-            price: 300,
-            inventory: 10,
-            rating: 3
-        },
-        quantity : 3
-    }
-];
+let initialState = data ? data : [];
 
 const cart = (state = initialState, action) => {
-    switch (action.Type) {
+    console.log(action);
+    let {product, quantity} = action;
+    switch (action.type) {
         case Types.ADD_TO_CART:
-            console.log('hoanganh',action);
+            let index = findProductInCart(state, product);
+            if (index !== -1) {
+                state[index].quantity += quantity;
+            } else {
+                state.push({
+                product, 
+                quantity});
+            }
+            localStorage.setItem("CART",JSON.stringify(state));
             return [...state];
         default: return [...state];
     }
+}
+
+let findProductInCart = (cart, product) => {
+    let index = -1;
+    if (cart.length > 0) {
+        for (let i = 0; i < cart.length; i++) {
+            if(cart[i].product.id === product.id) {
+                index = i;
+                break;
+            }
+        }
+    }
+    return index;
 }
 
 export default cart;

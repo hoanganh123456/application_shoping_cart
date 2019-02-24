@@ -21,7 +21,7 @@ class CartContainer extends Component {
 
   showCartItem = (cart) => {
     let result = Message.MSG_CART_EMPTY;
-    if (cart.length > 0) {
+    if (cart.length > 0) { 
       result = cart.map((item,index) => {
         return(
           <CartItem
